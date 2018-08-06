@@ -1,0 +1,34 @@
+version: "3.0"
+
+services:
+# Define InfluxDB
+  influxdb:
+    build: ./influxdb
+    hostname: influxdb
+    ports: 
+      - "8083:8083"
+      - "8086:8086"
+   
+# Define grafana
+  grafana:
+    build: ./grafana
+    hostname: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+
+# Define Telegraf
+  telegraf:
+    build: ./telegraf
+    hostname: telegraf
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+      - grafana
+    ports:
+      - "8092:8092/udp"
+      - "8094:8094"
+      - "8125:8125/udp"
+      - "161:161"
