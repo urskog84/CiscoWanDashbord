@@ -138,6 +138,12 @@
                   {
                     "params": [],
                     "type": "mean"
+                  },
+                  {
+                    "params": [
+                      " / 100"
+                    ],
+                    "type": "math"
                   }
                 ]
               ],
@@ -679,5 +685,5 @@
   },
   "timezone": "browser",
   "title": "Wan",
-  "version": 1
+  "version": 2
 }
